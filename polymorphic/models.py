@@ -197,7 +197,8 @@ class PolymorphicModel(with_metaclass(PolymorphicModelBase, models.Model)):
         But they should not. So we replace them with our own accessors that use
         our appropriate base_objects manager.
         """
-        super(PolymorphicModel, self).__init__(*args, **kwargs)
+        super(PolymorphicModel, self).__init__()
+        models.Model.__init__(self, *args, **kwargs)
 
         if self.__class__.polymorphic_super_sub_accessors_replaced:
             return
